@@ -7,9 +7,9 @@
 
 >>> ![SparkifyLogo](/SparkifyBlog/Sparkify_Udacity.png "Sparkify Logo")
 
-The users are can listen to songs and music as `Guest` or `Registered` users.
+The users of **Sparkify** can listen to songs and music from the online portal or add as `Guest` or `Registered` users.
 
-But there is a problem that of existing users `cancelling` and leaving. Well, This is users choice. But it is not good for the bussiness. Sparkify needs the customers to stick on. 
+But there is a problem. The of existing users `cancelling` and leaving. Well, This is users choice. But it is not good for the bussiness. Sparkify needs the customers to stick on. 
 As long as users are around there is possibility they could `upgrade and become paid`. Even if they stick on as `free level` user , still there is some minimum revenue to be 
 earned due to rolling Adverts.  
 
@@ -41,7 +41,6 @@ root
 |-- userAgent: string (nullable = true)
 |-- userId: string (nullable = true)
 ```
-
 
 ### Understaning the data
 > `User Categories`
@@ -116,9 +115,169 @@ The `paid` user seems to have more number of session per week as compared to fre
 
 The above graphs shows Cancelled users and Active user are having faily same level of thumbs up and thumbs downs. cancel users have relatively added more friends than active users. This could be they are more enagaged with there friends and sparkify, As they are more engaged they  expect more from performace Sparkify portal.
 
+#### `Weekly number of page navigation per Cancelled user vs Active user`
+
+![Weekly number of page navigation per Cancelled user vs Active user](/SparkifyBlog/navigation.png "Weekly number of page navigation per Cancelled user vs Active user")
+
+## Feature Selection
+Based of the Exploratory Data Analsysis steps I above, I have decideded to further granualarise the time bucket to `per user per day` metrics of same set of metrics. This way the behaviour more prescisely over the 2 months period of the log dataset. Making a full use of `Time Seriese` dataset. The same metricts explored by week in EDA is to be use by as features of machine learing model but now with the `varition of metrics is observed at each day interval`.
+
+The section of completed feature dataset is provide below. The will be 1 row per day per user with the machine learning `Lable` as `isCancelled` column and reset of numeric fields except `userId` and `day` are to be used in building `Feature Vector` as an input to machine learning alogrithm. 
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<style  type="text/css" >
+</style>  
+<table id="T_0604e6f8_cda7_11ea_b23c_0242ac120002" > 
+<thead>    <tr> 
+        <th class="col_heading level0 col0" >userId</th> 
+        <th class="col_heading level0 col1" >day</th> 
+        <th class="col_heading level0 col2" >isCancelled</th> 
+        <th class="col_heading level0 col3" >listenTime</th> 
+        <th class="col_heading level0 col4" >sessions</th> 
+        <th class="col_heading level0 col5" >numOfItems</th> 
+        <th class="col_heading level0 col6" >numOfSongs</th> 
+        <th class="col_heading level0 col7" >thumbsUp</th> 
+        <th class="col_heading level0 col8" >thumbsDown</th> 
+        <th class="col_heading level0 col9" >upgrade</th> 
+        <th class="col_heading level0 col10" >rollAdvert</th> 
+        <th class="col_heading level0 col11" >advert_seconds</th> 
+        <th class="col_heading level0 col12" >downgrade</th> 
+        <th class="col_heading level0 col13" >addFriend</th> 
+        <th class="col_heading level0 col14" >addToPlaylist</th> 
+        <th class="col_heading level0 col15" >numOfArtist</th> 
+        <th class="col_heading level0 col16" >numOfUniqSongs</th> 
+        <th class="col_heading level0 col17" >sumSongRank</th> 
+        <th class="col_heading level0 col18" >sumArtistRank</th> 
+        <th class="col_heading level0 col19" >upgradeToCancelDays</th> 
+        <th class="col_heading level0 col20" >downgradeToCancelDays</th> 
+        <th class="col_heading level0 col21" >avgDowngradeDays</th> 
+        <th class="col_heading level0 col22" >avgUpgradeDays</th> 
+    </tr></thead> 
+<tbody>    <tr> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col0" class="data row0 col0" >126</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col1" class="data row0 col1" >283</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col2" class="data row0 col2" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col3" class="data row0 col3" >977.0304800000001</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col4" class="data row0 col4" >1</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col5" class="data row0 col5" >6</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col6" class="data row0 col6" >3</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col7" class="data row0 col7" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col8" class="data row0 col8" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col9" class="data row0 col9" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col10" class="data row0 col10" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col11" class="data row0 col11" >0.0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col12" class="data row0 col12" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col13" class="data row0 col13" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col14" class="data row0 col14" >1</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col15" class="data row0 col15" >3</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col16" class="data row0 col16" >3</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col17" class="data row0 col17" >-3</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col18" class="data row0 col18" >-3</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col19" class="data row0 col19" >0.0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col20" class="data row0 col20" >0.0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col21" class="data row0 col21" >1.6103075396825437</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row0_col22" class="data row0 col22" >2.4966608796296295</td> 
+    </tr>    <tr> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col0" class="data row1 col0" >126</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col1" class="data row1 col1" >334</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col2" class="data row1 col2" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col3" class="data row1 col3" >39161.05634999997</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col4" class="data row1 col4" >1</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col5" class="data row1 col5" >189</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col6" class="data row1 col6" >162</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col7" class="data row1 col7" >9</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col8" class="data row1 col8" >4</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col9" class="data row1 col9" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col10" class="data row1 col10" >1</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col11" class="data row1 col11" >1.0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col12" class="data row1 col12" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col13" class="data row1 col13" >2</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col14" class="data row1 col14" >2</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col15" class="data row1 col15" >156</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col16" class="data row1 col16" >161</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col17" class="data row1 col17" >-162</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col18" class="data row1 col18" >-162</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col19" class="data row1 col19" >0.0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col20" class="data row1 col20" >0.0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col21" class="data row1 col21" >1.6103075396825437</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row1_col22" class="data row1 col22" >2.4966608796296295</td> 
+    </tr>    <tr> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col0" class="data row2 col0" >126</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col1" class="data row2 col1" >318</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col2" class="data row2 col2" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col3" class="data row2 col3" >3772.726980000001</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col4" class="data row2 col4" >1</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col5" class="data row2 col5" >22</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col6" class="data row2 col6" >17</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col7" class="data row2 col7" >2</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col8" class="data row2 col8" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col9" class="data row2 col9" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col10" class="data row2 col10" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col11" class="data row2 col11" >0.0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col12" class="data row2 col12" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col13" class="data row2 col13" >1</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col14" class="data row2 col14" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col15" class="data row2 col15" >17</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col16" class="data row2 col16" >17</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col17" class="data row2 col17" >-17</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col18" class="data row2 col18" >-17</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col19" class="data row2 col19" >0.0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col20" class="data row2 col20" >0.0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col21" class="data row2 col21" >1.6103075396825437</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row2_col22" class="data row2 col22" >2.4966608796296295</td> 
+    </tr>    <tr> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col0" class="data row3 col0" >126</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col1" class="data row3 col1" >274</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col2" class="data row3 col2" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col3" class="data row3 col3" >10138.736670000002</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col4" class="data row3 col4" >2</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col5" class="data row3 col5" >38</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col6" class="data row3 col6" >28</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col7" class="data row3 col7" >2</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col8" class="data row3 col8" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col9" class="data row3 col9" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col10" class="data row3 col10" >2</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col11" class="data row3 col11" >471.0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col12" class="data row3 col12" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col13" class="data row3 col13" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col14" class="data row3 col14" >1</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col15" class="data row3 col15" >28</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col16" class="data row3 col16" >28</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col17" class="data row3 col17" >-28</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col18" class="data row3 col18" >-28</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col19" class="data row3 col19" >0.0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col20" class="data row3 col20" >0.0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col21" class="data row3 col21" >1.6103075396825437</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row3_col22" class="data row3 col22" >2.4966608796296295</td> 
+    </tr>    <tr> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col0" class="data row4 col0" >126</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col1" class="data row4 col1" >330</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col2" class="data row4 col2" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col3" class="data row4 col3" >7517.45297</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col4" class="data row4 col4" >1</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col5" class="data row4 col5" >35</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col6" class="data row4 col6" >29</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col7" class="data row4 col7" >1</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col8" class="data row4 col8" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col9" class="data row4 col9" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col10" class="data row4 col10" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col11" class="data row4 col11" >0.0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col12" class="data row4 col12" >0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col13" class="data row4 col13" >2</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col14" class="data row4 col14" >1</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col15" class="data row4 col15" >29</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col16" class="data row4 col16" >29</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col17" class="data row4 col17" >-29</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col18" class="data row4 col18" >-29</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col19" class="data row4 col19" >0.0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col20" class="data row4 col20" >0.0</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col21" class="data row4 col21" >1.6103075396825437</td> 
+        <td id="T_0604e6f8_cda7_11ea_b23c_0242ac120002row4_col22" class="data row4 col22" >2.4966608796296295</td> 
+    </tr></tbody> 
+</table> 
+</div>
+        
 ------------------
-## Problem Statement
-**Evaluate algorithms and build a machine learning model to predict the users churn** using the user event log data. Choose a best model and predict user who could churn using the model.
 
 ## Metrics to Evaluate Model
 The dataset taken for analyis is imbalanced dataset with only around `10%` cancelled user. As the dataset is heavily imbalanced to existing customers
