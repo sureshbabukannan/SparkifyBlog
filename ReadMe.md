@@ -5,7 +5,7 @@
 ## Overview
 #### Sparkify is a fictious online Music portal for songs and music create by Udacity for DataScientist Capstone project turorial. 
 
->>> ![SparkifyLogo](/SparkifyBlog/avert.png "Sparkify Logo")
+>>> ![SparkifyLogo](/SparkifyBlog/Sparkify_Udacity.png "Sparkify Logo")
 
 The users are can listen to songs and music as `Guest` or `Registered` users.
 
@@ -98,10 +98,25 @@ There are `52` cancelled users out of `226` users which is around `23.3%`
 
 The following graph shows `weekly metrics` of users who `eventually cancelled` with in the time period of log and `Users who has not cancelled`. This is done to identify the metrics that could be used for training the machine learning model 
 
-#### `Per Cancelled user Weekly song listening time` and `Per Active user Weekly song listening time`
+#### `Per Cancelled user Weekly song listening time` vs `Per Active user Weekly song listening time`
 
-![Weekly song listening time - Cancelled vs Active user](/SparkifyBlog/Sessions.png "Weekly song listening time - Cancelled vs Active user")
+![Weekly song listening time - Cancelled vs Active user](/SparkifyBlog/Listen_Time.png "Weekly song listening time - Cancelled vs Active user")
 
+The paid user seems to spend more time as expected. But it is surprising to see per cancelled users send more time listening to song in a week than per registered user especially in the last week.
+
+#### `Propotional Weekly number of Sessions - Cancelled vs Active Users`
+
+![Propotional Weekly number of Sessions - Cancelled vs Active Users](/SparkifyBlog/Sessions.png "Propotional Weekly number of Sessions - Cancelled vs Active Users")
+
+The `paid` user seems to have more number of session per week as compared to free user as the graph 2. But treand is not very evdient with cancelled users.
+
+#### `Weekly number of Thumbs Up, Thumbs Down, Add Friends per Cancelled user vs Active user`
+
+![Weekly number of Thumbs Up, Thumbs Down, Add Friends per Cancelled user vs Active user](/SparkifyBlog/Metrics.png "Weekly number of Thumbs Up, Thumbs Down, Add Friends per Cancelled user vs Active user")
+
+The above graphs shows Cancelled users and Active user are having faily same level of thumbs up and thumbs downs. cancel users have relatively added more friends than active users. This could be they are more enagaged with there friends and sparkify, As they are more engaged they  expect more from performace Sparkify portal.
+
+------------------
 ## Problem Statement
 **Evaluate algorithms and build a machine learning model to predict the users churn** using the user event log data. Choose a best model and predict user who could churn using the model.
 
