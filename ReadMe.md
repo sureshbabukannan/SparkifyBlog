@@ -310,7 +310,7 @@ The value is same for all day of Upgraded users.
 
 ## The Machine Learning modelling 
  
-Machine learning modelling is not something out of science fiction movies, But it is about **applying stasticial methods** over very large volume of data or **big data**. When we say **Big data** the data which can not fit into one single computers memory and hence had to be split into multiple chunks , stored and processed seperately on multiple comuters. The results of the processing is assembled back into single unit by driver computer.  This is roughly how we describe the **distributed processing**
+Machine learning modelling is not something out of science fiction movies, But it is about **applying statistical methods** over very large volume of data or **big data**. When we say **Big data** the data which can not fit into one single computers memory and hence had to be split into multiple chunks , stored and processed seperately on multiple comuters. The results of the processing is assembled back into single unit by driver computer.  This is roughly how we describe the **distributed processing**
 
 If you like, You can find a interesting read on machine learning to start to understand [here](https://vas3k.com/blog/machine_learning/).
  
@@ -328,12 +328,11 @@ are applied on **mini_sparkify_event_log.json** at the `Udatacity workspace` to 
 
 ### Metrics to Evaluate the ML Models
 The dataset taken for analyis is imbalanced dataset with only around `23%` cancelled user. As the dataset is slightly imbalanced towards existing customers
-`F1-score` or `Harmonic Mean` is as used a primary metrics to evaluate the model. The models are used to predict using validation data and metrics are calcuated 
-for each model. Model with the best `F1-Score` can be used for further tuning.
+`F1-score` or `Harmonic Mean` is as used a primary metrics to evaluate the model. Validation data is used for prediction of `IsCancelled` value using trained. The model metrics are calcuated for each model. Model with the best `F1-Score` can be used for further tuning.
 
 ### Resultant Model Metrics.
 
-There 4 metrics caluated of trained models and are presented as below.
+There are 4 metrics calculated of each trained model and are presented as follows.
 > * **Accuracy**
 > * **Precision**
 > * **Recall**
@@ -459,20 +458,20 @@ There 4 metrics caluated of trained models and are presented as below.
 The experiment is done with small set of data of only 2 months data. There features were computed on each day basis to account for the
 variation of data over time. There are `20` features extracted from raw log data. The featured dataframe is then used to train 
 5 binary classification algorthms. The best model is evaluate based on `F1-score` metric. 
-**Out of 5 models** `Random Forest` **proved to be better in all metrics and with highest** `F1-score` **of** `32%` 
+**Based on the comparision of metrics of the models,** `Random Forest` **proved to be better in all metrics and with highest** `F1-score` **of** `32%` 
 
-There also needs to be further work done for hyperparameter tuning to improve the `F1-score`. Because of limited resources the models are trained with 
+There is also need to do further work on hyperparameter tuning to improve the `F1-score`. Because of limited resources the models are trained with 
 `mini_sparkify_event_data.json`. There is a need to train all choosen models with a larger dataset. Then the model also needs to be 
 pacakged as class and pacakges for deployment.
 
 ### Constrains
 
-Though Initial set out to work with **medium-sparkify-event-data.json** on IBM cloud, by the end of data analysis phase, I have exhaustedv the processing units of Free tier. So I had to continue the experiment on `Udacity workspace` with smaller dataset **mini-sparkify-event-data.json**. The results of the experiment is based on this small set of data.
+> * Though Initially set out to work with **medium-sparkify-event-data.json** on `IBM Watson studio`, by the end of data analysis phase, I have exhaustedv the processing units of Free tier. So I had to continue the experiment on `Udacity workspace` with smaller dataset **mini-sparkify-event-data.json**. The results of the experiment is based on this smaller set of data.
 
-At a larger scale the same set of alorithms can be used to bigger dataset **medium-sparkify-event-log.json** at distributed processing facility like `AWS`,`IBM Watsom Studio` or `Azure` Cloud. But because of the resourse contraints assoicated cost of using Public cloud computing platforms `Udatacity is used. 
+> * At a larger scale the same set of alorithms can be used to bigger dataset **medium-sparkify-event-log.json** at distributed processing facility like `AWS`,`IBM Watsom Studio` or `Azure` Cloud. But because of the resourse contraints and assoicated cost of using Public cloud computing platforms `Udatacity Workspace` is used. 
 
-### Further Improvement suggested.
-The results are not perfect and there is scope for improvement. Some of the improvement I can thing about are
+### Further Improvements Suggested.
+The results are not perfect and there is scope for much improvement. Some of the improvement I can thing about are
 
 > * Only numerical statistics of users are used as features. There is scope to use the Catergorical value like `Gender`, `State`, `UserAgents`, `OS` in building more number of features. These categoical variables have to be numerically encoded and used as features.
 > * There is scope to choose other Binary classification algorithms for model evaluation, One such algorithm not used here is `Decision Tree` which can also be used.
