@@ -120,9 +120,11 @@ The above graphs shows Cancelled users and Active user are having faily same lev
 ![Weekly number of page navigation per Cancelled user vs Active user](/SparkifyBlog/navigation.png "Weekly number of page navigation per Cancelled user vs Active user")
 
 ## Feature Selection
-Based of the Exploratory Data Analsysis steps I above, I have decideded to further granualarise the time bucket to `per user per day` metrics of same set of metrics. This way the behaviour more prescisely over the 2 months period of the log dataset. Making a full use of `Time Seriese` dataset. The same metricts explored by week in EDA is to be use by as features of machine learing model but now with the `varition of metrics is observed at each day interval`.
+Based of the **Exploratory Data Analsysis** steps above, I have decided to further granualarise the time bucket to `per user per day` basis, the same set of metrics. This way the user behaviour is more prescisely captured over the 2 months period of the log dataset, Making a full use of `Time Series` nature of the dataset. The same metricts explored by week in EDA is to be use by as features of machine learing model but now with the `varition of metrics is observed at each day interval`.
 
-The section of completed feature dataset is provide below. The will be 1 row per day per user with the machine learning `Lable` as `isCancelled` column and reset of numeric fields except `userId` and `day` are to be used in building `Feature Vector` as an input to machine learning alogrithm. 
+The section of completed feature dataset is provide below. There is 1 row per day per user with the `machine learning Classification` `Label` as `isCancelled` column and rest of the numeric fields except `userId` and `day` are to be used in building `Feature Vector` as an input to machine learning alogrithms. 
+
+### The features used 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <style  type="text/css" >
@@ -276,12 +278,192 @@ The section of completed feature dataset is provide below. The will be 1 row per
     </tr></tbody> 
 </table> 
 </div>
-        
-------------------
 
-## Metrics to Evaluate Model
-The dataset taken for analyis is imbalanced dataset with only around `10%` cancelled user. As the dataset is heavily imbalanced to existing customers
-`F1-score` or `Harmonic Mean` is as used a primary metrics to evaluate the model.
+### Meaning of the features
+
+`isCancelled` field is marked as `0` if Acitve user ( user who dont have `Cancel` event page ) and `1` for cancelled user. This serves as label for machine learning.
+> * **Daily listening time in minitues** - representing Time spent in listening to songs
+> * **Number of sessions daily** - How often user logoff and logged in every day
+> * **Number of items in session daily** - How much user was navigating daily
+> * **Number of songs daily** - Number of song user listen daily, this is different for how long because use could just play few minutes of the song and skip to nextsong
+> * **Number of thumbs up daily**
+> * **Number of thumbs downs daily**
+> * **Number of upgrades daily**
+> * **Number of roll adverts daily**
+> * **Number of downgrades daily**
+> * **Number of add friends daily**
+> * **Number of add to playlist daily**
+> * **Number of distinct artist daily**
+> * **Number of distinct songs daily**
+> * **Negative Value of Sum of Rank of all songs, users Listen to on the day** - This feature attributes for individual songs listened by Users
+> * **Negative Value of Sum of Rank of all Artist, users Listen to on the day** - This feature attributes for individual artist listened by Users
+> * **Length of time in days between first upgrade and cancellation** - This feature is `0` for user who has not cancelled or free user. 
+The value is same for all day of cancelled users.
+> * **Lenght of time in days between first downgrade and cancellation** - This feature is `0` for user who are free or user how have not downgraded. 
+The value is be same for all day of upgraded users.
+> * **Average of lenght of time in days between upgrade to cancel** - This feature is 0 for user who are free or user how have not Upgraded. 
+The value is same for all day of upgraded user.
+> * **Average of lenght of time in days between consequitive Downgrades** - This feature is `0` for user who are free or user how have not downgraded. 
+The value is same for all day of Downgraded users.
+> * **Average of lenght of time in days between consequitive Upgrades** - This feature is `0` for user who are free or user how have not Upgraded. 
+The value is same for all day of Upgraded users.
+
+ ## The Machine Learning modelling 
+ 
+Machine learning modelling is not something out of science fiction movies, But it is about **applying stasticial methods** over very large volume of data or **big data**. When we say **Big data** the data which can not fit into one single computers memory and hence had to be split into multiple chunks , stored and processed seperately on multiple comuters. The results of the processing is assembled back into single unit by driver computer.  This is roughly how we describe the **distributed processing**
+
+If you like, You can find a interesting read on machine learning to start to understand [here](https://vas3k.com/blog/machine_learning/).
+ 
+### machine learning Algorithms
+`A machine learning process can be applied on big data at distributed processing facility` based on what I have described above. 
+This value to be predicted can only `0` or `1`. This is a `binary classification` problem. 
+
+Applying the same statement for this experiment the following `binary classification` machine learning alogrithms  
+>> * **Logisctic regression**
+>> * **Random Forests**
+>> * **Gradient-Boosted Trees**
+>> * **Support Vector Machine**
+>> * **MultilayerPerceptronClassifier**
+are applied on **mini_sparkify_event_log.json** at the `Udatacity workspace` to train the models. 
+
+### Metrics to Evaluate the ML Models
+The dataset taken for analyis is imbalanced dataset with only around `23%` cancelled user. As the dataset is slightly imbalanced towards existing customers
+`F1-score` or `Harmonic Mean` is as used a primary metrics to evaluate the model. The models are used to predict using validation data and metrics are calcuated 
+for each model. Model with the best `F1-Score` can be used for further tuning.
+
+### Model Metrics.
+
+The trained models metrics are presented as below.
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Accuracy</th>
+      <th>Precision</th>
+      <th>Recall</th>
+      <th>F1</th>
+      <th>model</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Training</th>
+      <td>0.951020</td>
+      <td>0.142157</td>
+      <td>0.707317</td>
+      <td>0.236735</td>
+      <td>Support Vector Machine</td>
+    </tr>
+    <tr>
+      <th>Validation</th>
+      <td>0.970620</td>
+      <td>0.148005</td>
+      <td>0.809859</td>
+      <td>0.250272</td>
+      <td>Support Vector Machine</td>
+    </tr>
+    <tr>
+      <th>Validation</th>
+      <td>0.978237</td>
+      <td>0.157014</td>
+      <td>0.859155</td>
+      <td>0.265506</td>
+      <td>Logistic Regression</td>
+    </tr>
+    <tr>
+      <th>Training</th>
+      <td>0.971882</td>
+      <td>0.167211</td>
+      <td>0.831978</td>
+      <td>0.278458</td>
+      <td>Logistic Regression</td>
+    </tr>
+    <tr>
+      <th>Validation</th>
+      <td>0.984766</td>
+      <td>0.168597</td>
+      <td>0.922535</td>
+      <td>0.285092</td>
+      <td>MultilayerPerceptronClassifier</td>
+    </tr>
+    <tr>
+      <th>Validation</th>
+      <td>0.993471</td>
+      <td>0.175032</td>
+      <td>0.957746</td>
+      <td>0.295974</td>
+      <td>Random Forest</td>
+    </tr>
+    <tr>
+      <th>Validation</th>
+      <td>0.993471</td>
+      <td>0.175032</td>
+      <td>0.957746</td>
+      <td>0.295974</td>
+      <td>Gradient-Boosted Trees</td>
+    </tr>
+    <tr>
+      <th>Training</th>
+      <td>0.982313</td>
+      <td>0.181373</td>
+      <td>0.902439</td>
+      <td>0.302041</td>
+      <td>MultilayerPerceptronClassifier</td>
+    </tr>
+    <tr>
+      <th>Training</th>
+      <td>0.990930</td>
+      <td>0.190087</td>
+      <td>0.945799</td>
+      <td>0.316553</td>
+      <td>Gradient-Boosted Trees</td>
+    </tr>
+    <tr>
+      <th>Training</th>
+      <td>0.991383</td>
+      <td>0.190632</td>
+      <td>0.948509</td>
+      <td>0.317460</td>
+      <td>Random Forest</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+### Comparision of metrics of 5 Machine Learning Models
+
+![Comparision of metrics of 5 Machine Learning Models](/SparkifyBlog/Model_Compare.png "Comparision of metrics of 5 Machine Learning Models")
+
+
+
+### Constrains
+
+*At larger scale the same set of alorithms can be used to bigger dataset ****medium-sparkify-event-log.json** at distributed processing facility like `AWS`,`IBM Cloud` or `Azure` Cloud. But because of the resourse contraints assoicated cost of using Public cloud computing platforms `Udatacity is used. 
+
+
+
+Each model is trained with different set of model `hyperparameters by us
+
+ ------------------
+
+
 
 ## Data Analysis
 These are the fields of the **user log** provide as json file **mini-sparkify-event-data.json**
