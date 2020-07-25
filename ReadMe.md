@@ -1,8 +1,15 @@
-# Why do listners hangup headphones over Sparikfy?
+# Why do listeners hangup headphones over Sparikfy?
 
 ![Dropping the headphone the customers could move on](/SparkifyBlog/Drophead_phone.jpg "Dropping the headphone the customers could move on")
-## Project Overview
-Sparkify is a fictious online Music poral for sogns and music. The user are can listen to sogns and music as `Guest` or `Registered` users.
+
+## Overview
+Sparkify is a fictious online Music portal for sogns and music. The user are can listen to sogns and music as `Guest` or `Registered` users.
+
+But there is problem the are user who is `cancelling` and leaving. This is well users choose, but it is not good for the bussiness. Sparkify needs the customers to stick on. 
+As long as users are around there is possibility they could `upgrade and become paid`. Even if they stick on as `free level` user , still there is some minimum revenue to be 
+earned due to rolling Adverts.  
+
+As per industry anslysis, The `cost of acquiring new customer is more than the maintaining the existing customers`. But only if we know in advance the customers could leave.  
 
 The registered user can be `free` or `paid` level users.  The users, can `listen`, `add a friend`, `thumps up`, `thumbs down` to a song. 
 User can also `Upgrade` to paid subscription and `Upgrade` multiple levels of subscription, `Downgrade` to lower paid level `Downgrade` free level 
