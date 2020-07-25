@@ -1,4 +1,4 @@
-# Why do listeners hangup headphones over Sparikfy?
+# Why do listeners hangup headphones over Sparkify?
 
 ![Dropping the headphone the customers could move on](/SparkifyBlog/Drophead_phone.jpg "Dropping the headphone the customers could move on")
 
