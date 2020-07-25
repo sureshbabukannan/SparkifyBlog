@@ -5,7 +5,7 @@
 ## Overview
 #### Sparkify is a fictious online Music portal for songs and music create by Udacity for DataScientist Capstone project turorial. 
 
-![SparkifyLogo](/SparkifyBlog/avert.png "Sparkify Logo")
+>>> ![SparkifyLogo](/SparkifyBlog/avert.png "Sparkify Logo")
 
 The users are can listen to songs and music as `Guest` or `Registered` users.
 
