@@ -3,14 +3,47 @@
 ![Dropping the headphone the customers could move on](/SparkifyBlog/Drophead_phone.jpg "Dropping the headphone the customers could move on")
 
 ## Overview
-Sparkify is a fictious online Music portal for sogns and music. The user are can listen to sogns and music as `Guest` or `Registered` users.
+Sparkify is a fictious online Music portal for songs and music. The users are can listen to songs and music as `Guest` or `Registered` users.
 
-But there is problem the are user who is `cancelling` and leaving. This is well users choose, but it is not good for the bussiness. Sparkify needs the customers to stick on. 
+But there is a problem that of existing users `cancelling` and leaving. Well, This is users choice. But it is not good for the bussiness. Sparkify needs the customers to stick on. 
 As long as users are around there is possibility they could `upgrade and become paid`. Even if they stick on as `free level` user , still there is some minimum revenue to be 
 earned due to rolling Adverts.  
 
-As per industry anslysis, The `cost of acquiring new customer is more than the maintaining the existing customers`. But only if we know in advance the customers could leave.  
+As per industry anslysis, The `cost of acquiring new customer is more than the maintaining the existing customers`. But only if we know in advance the customers could leave. 
+The industry term for user cancelling and leaving is called `User Churn or Attrition`. The aim of this experiment is to predict the `user churn` using `Machine learning modelling`
 
+## The Data
+
+Any machine learning experiment requires large amounts of releavent data as input for the models to be trained.  The Sparkify portal logs users activity of every actions of every user. This log is rich source of data to understand user behaviour. It is choronological sequence of timestamped events of user. We could understand the activity or behaviour of the user over time. if it may interest you, could have look at the datapoints of the user log below
+
+```
+root
+|-- artist: string (nullable = true)
+|-- auth: string (nullable = true)
+|-- firstName: string (nullable = true)
+|-- gender: string (nullable = true)
+|-- itemInSession: long (nullable = true)
+|-- lastName: string (nullable = true)
+|-- length: double (nullable = true)
+|-- level: string (nullable = true)
+|-- location: string (nullable = true)
+|-- method: string (nullable = true)
+|-- page: string (nullable = true)
+|-- registration: long (nullable = true)
+|-- sessionId: long (nullable = true)
+|-- song: string (nullable = true)
+|-- status: long (nullable = true)
+|-- ts: long (nullable = true)
+|-- userAgent: string (nullable = true)
+|-- userId: string (nullable = true)
+```
+
+
+
+
+### Understaning the data
+
+### Exploring the Data
 The registered user can be `free` or `paid` level users.  The users, can `listen`, `add a friend`, `thumps up`, `thumbs down` to a song. 
 User can also `Upgrade` to paid subscription and `Upgrade` multiple levels of subscription, `Downgrade` to lower paid level `Downgrade` free level 
 subscription. Users can also `Cancel` the subscription. All this activites are logged by the portal. User activies like `home` page visits, `login` and `logout` are 
@@ -19,46 +52,9 @@ logged by sparkify app/online poral.
 The user where earlied at paid level or free level can cancel the subscription and leave the subscription. This call the `User Churn or attrition`. A mini out of 
 user event log is of `2 months` at **mini_sparkify_event_data.json** as part of project files is taken for analysis and modelling of `User Churn`
 
->>   Our aim is to predict the `user churn` using Machine learning modelling`
+>>   
 
-## Files in the Github Repo
-  * [Sparikfy Main Jupyiter Notebook](https://github.com/sureshbabukannan/SparkifyUserChrun/blob/master/Sparkify.ipynb) -- The main Juypiter notebook of this project. Work on Data wrangling, EDA, Model evaluation and training
-  * [Sparikfy IBM Cloud Notebook](https://github.com/sureshbabukannan/SparkifyUserChrun/blob/master/Sparkify%20IBM%20Cloud.ipynb) -- Jupytier notebook build in IBM Cloud Watson Studio based on **medium-sparkify-event-data.json** 
-  with a file of size around `225 MB`. The notebooks has only data analayis part based on **medium-sparkify-event-data.json** dataset. 
-  I ran out of free tier processing units on IBM cloud and had to continue the rest of the project on Udacity workspace. 
-  * [Sparkify mini user log Zip](https://github.com/sureshbabukannan/SparkifyUserChrun/blob/master/mini_sparkify_event_data.zip) -- Zip file Data used for analysis is **mini_sparkify_event_data.json** ~10.6 MB
-  * [Libraries and Versions](https://github.com/sureshbabukannan/SparkifyUserChrun/blob/master/lib_version.txt) -- This is text file with the list of libraries in the enviroments used for the project and their versions 
-  * [ReadMe.md](https://github.com/sureshbabukannan/SparkifyUserChrun/blob/master/ReadMe.md): This file.
-    
-## Prerequesite Software 
-- Anacoda 4.x or above / IBM watson studio / AWS EMR (Machine learning run time environment )
-- Python 3.6.x (Programming language libraries)
-- pySpark 2.4.x (Machine Learning library)
-- matplotlib 3.03 (Data Visualisation library )
-- seaborn-0.8.1 or later (graph ploting 
-- pandas-0.23.3 (Dataframe library)
-- numpy-1.12.1 (numerical calculations library)
-- jupyter (Ipython notebook for Jupyiter notbook runtime)
 
-- The full list of software in the enviroment can be found in `lib_version.txt` file in the Git Repo.
-
-## Installation
-> * If you like to create a seperate conda enviroment before executing the `Sparkify main Juypiter Notebook` run the below command in Conda environment
-```
-conda create --name <your enviroment name> --file lib_version.txt
-```
-
-> * Unzip the data file `**mini_sparkify_event_data.json** ` place it in the same folder as the `Sparkify.ipynb` 
-
-> * Run the `jupyter notebook` command from a `Conda prompt` as shown
-
-``` (base) Conda prompt> jupyter notebook Sparkify.ipynb ```
-
-> * If a different dataset with the same schema is to be trained - Change the below line in the notebook to load different datasource and click run all under cell menu item
-
-```
-df = spark.read.json('<your_json_file_name_here.json>')
-```
 
 ## Problem Statement
 **Evaluate algorithms and build a machine learning model to predict the users churn** using the user event log data. Choose a best model and predict user who could churn using the model.
