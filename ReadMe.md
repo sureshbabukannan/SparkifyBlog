@@ -1,6 +1,6 @@
 # Why do listners hangup headphones over Sparikfy?
 
-![Dropping the headphone the customers could move on](https://github.com/sureshbabukannan/SparkifyBlog/blob/Drophead_phone.jpg "Dropping the headphone the customers could move on")
+![Dropping the headphone the customers could move on](/SparkifyBlog/blob/Drophead_phone.jpg "Dropping the headphone the customers could move on")
 ## Project Overview
 Sparkify is a fictious online Music poral for sogns and music. The user are can listen to sogns and music as `Guest` or `Registered` users.
 
