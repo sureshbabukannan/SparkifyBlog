@@ -39,20 +39,41 @@ root
 ```
 
 
-
-
 ### Understaning the data
+> `User Categories`
+>> * The registered user can be `free` or `paid` level users.  
+>> * The users are can listen to songs and music as `Guest` or `Registered` users.
+
+> `User Musicial Activities`
+>> * The users can `listen`, `add a friend`, `thumps up`, `thumbs down` , `add to favourite` to a song.
+
+> `User Financial Activities`
+>> * `Upgrade` to paid subscription and `Upgrade` multiple levels of subscription,
+>> * `Downgrade` to lower paid level `Downgrade` free level subscription. 
+>> * `Users can also `Cancel` the subscription. 
+
+User activies like `home` page visits, `Help`, `login` and `logout` are also other user actions logged by sparkify app/online poral.
 
 ### Exploring the Data
-The registered user can be `free` or `paid` level users.  The users, can `listen`, `add a friend`, `thumps up`, `thumbs down` to a song. 
-User can also `Upgrade` to paid subscription and `Upgrade` multiple levels of subscription, `Downgrade` to lower paid level `Downgrade` free level 
-subscription. Users can also `Cancel` the subscription. All this activites are logged by the portal. User activies like `home` page visits, `login` and `logout` are 
-logged by sparkify app/online poral.
 
-The user where earlied at paid level or free level can cancel the subscription and leave the subscription. This call the `User Churn or attrition`. A mini out of 
-user event log is of `2 months` at **mini_sparkify_event_data.json** as part of project files is taken for analysis and modelling of `User Churn`
+We set up by exploring and producting visuailations to understand the user activities. The log data has 2 months of user log.
 
->>   
+<div class="output_html rendered_html output_subarea output_execute_result">
+<style  type="text/css" >
+</style>  
+<table id="T_7aea3ce4_cda6_11ea_b23c_0242ac120002" > 
+<thead>    <tr> 
+        <th class="col_heading level0 col0" >start_date</th> 
+        <th class="col_heading level0 col1" >end_date</th> 
+    </tr></thead> 
+<tbody>    <tr> 
+        <td id="T_7aea3ce4_cda6_11ea_b23c_0242ac120002row0_col0" class="data row0 col0" >2018-10-01 00:01:57</td> 
+        <td id="T_7aea3ce4_cda6_11ea_b23c_0242ac120002row0_col1" class="data row0 col1" >2018-12-03 01:11:16</td> 
+    </tr></tbody> 
+</table> 
+</div>
+
+   
 
 
 
