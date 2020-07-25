@@ -3,7 +3,11 @@
 ![Dropping the headphone the customers could move on](/SparkifyBlog/Drophead_phone.jpg "Dropping the headphone the customers could move on")
 
 ## Overview
-Sparkify is a fictious online Music portal for songs and music. The users are can listen to songs and music as `Guest` or `Registered` users.
+#### Sparkify is a fictious online Music portal for songs and music. 
+
+![SparkifyLogo](/SparkifyBlog/Sparkify Udacity.png "Sparkify Logo")
+
+The users are can listen to songs and music as `Guest` or `Registered` users.
 
 But there is a problem that of existing users `cancelling` and leaving. Well, This is users choice. But it is not good for the bussiness. Sparkify needs the customers to stick on. 
 As long as users are around there is possibility they could `upgrade and become paid`. Even if they stick on as `free level` user , still there is some minimum revenue to be 
@@ -73,9 +77,30 @@ We set up by exploring and producting visuailations to understand the user activ
 </table> 
 </div>
 
-   
+There are `52` cancelled users out of `226` users which is around `23.3%`
 
+<div class="output_html rendered_html output_subarea output_execute_result">
+<style  type="text/css" >
+</style>  
+<table id="T_7c93a8be_cda6_11ea_b23c_0242ac120002" > 
+<thead>    <tr> 
+        <th class="col_heading level0 col0" >DISTINCT Users</th> 
+    </tr></thead> 
+<tbody>    <tr> 
+        <td id="T_7c93a8be_cda6_11ea_b23c_0242ac120002row0_col0" class="data row0 col0" >226</td> 
+    </tr></tbody> 
+</table> 
+</div>
 
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table><tr style="border-bottom: 1px solid"><td style="font-weight: bold">Cancelled Users</td></tr><tr><td>52</td></tr></table>
+</div>
+
+The following graph shows `weekly metrics` of users who `eventually cancelled` with in the time period of log and `Users who has not cancelled`. This is done to identify the metrics that could be used for training the machine learning model 
+
+#### `Per Cancelled user Weekly song listening time` and `Per Active user Weekly song listening time`
+
+![Weekly song listening time - Cancelled vs Active user](/SparkifyBlog/Sessions.png "Weekly song listening time - Cancelled vs Active user")
 
 ## Problem Statement
 **Evaluate algorithms and build a machine learning model to predict the users churn** using the user event log data. Choose a best model and predict user who could churn using the model.
