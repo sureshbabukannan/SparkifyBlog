@@ -505,7 +505,9 @@ param_grid = ParamGridBuilder()                     \
 </table>
 </div>
 
+
 ##### **Random Forests**
+
 
 > * **Parameters :**
 
@@ -520,6 +522,7 @@ param_grid = ParamGridBuilder()                                       \
 ```
 
 > * **Resultant Metrics** 
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -566,7 +569,9 @@ param_grid = ParamGridBuilder()                                       \
 </div>
 </div>
 
+
 ##### **Gradient-Boosted Trees**
+
 
 > * **Parameters :**
 
@@ -578,7 +583,9 @@ param_grid = ParamGridBuilder()               \
             .build()
 ```
 
+
 > * **Resultant Metrics** 
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -625,9 +632,12 @@ param_grid = ParamGridBuilder()               \
 </div>
 </div>
 
+
 ##### **Decision Trees Classifier**
 
+
 > * **Parameters :**
+
 
 ```
 param_grid =ParamGridBuilder()                           \
@@ -636,7 +646,9 @@ param_grid =ParamGridBuilder()                           \
             .build()
 ```
 
+
 > * **Resultant Metrics** 
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -683,14 +695,19 @@ param_grid =ParamGridBuilder()                           \
 </div>
 </div>
 
+
+
 ### **Metrics to Evaluate the ML Models**
+
 
 The dataset taken for analyis is imbalanced dataset with only around `23%` cancelled user. As the dataset is slightly imbalanced 
 towards active customers. `F1-score` or `Harmonic Mean` is as used a primary metrics to evaluate the model. 
 Validation data is used for prediction of `IsCancelled` value of test dataset. Model with the best `F1-Score` can be used 
 for further hyperparameter tuning.
 
+
 #### **Resultant metric of all 4 models**
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -788,14 +805,20 @@ for further hyperparameter tuning.
 </div>
 </div>
 
+
+
 We could see that `Decision Tree Classifier` and `Gradient Boosted Trees` both perform better with `0.40` **F1 score** on validation set. 
 There is scope for more hyperparameter tuning and train the model on larger dataser and using more number of features.
 
+
 #### Comparision of Metrics of Machine Learning Models
+
 
 ![Comparision of metrics of ML Models](/SparkifyBlog/Model_Compare.png "Comparision of metrics of ML Models")
 
+
 ## Conclusion
+
 
 The experiment is done with `2` months data. The features were engineered on `per user basis`. There are `29` features extracted from 
 raw log data. The featured dataframe is then used in ML modelling.  `4` binary classification algorthms are evaluated and model
@@ -804,13 +827,16 @@ to be better in all metrics, with F1 score of `0.40` on validation data and `0.4
 cost effective than `Gradient Boosted tree`, so can be used for prediction. The model can be improved by using more hyperparameter tuning 
 with boarder set of parameters and fitting with larger dataset.
 
+
 ### Constrains
 
 > * Limited availabity of data and compute resourses. There is always scope for further improvement due to this constraints.
 
+
 ### Further Improvements Suggested.
 
 The results are not perfect and there is scope for improvement. Some of the improvement I can thing about are
+
 
 > * Use more Catergorical features based on `Gender`, `State`, Song, Artist etc. 
 > * Think about more numberic of features. 
