@@ -320,7 +320,9 @@ root
 </pre>
 
 ### Meaning of features
+
 ##### Numerical Features
+
 `isCancelled` field is marked as `0` if Acitve user ( user who dont have `Cancel` event page ) and `1` for cancelled user. This serves as label for machine learning.
 > * **Listening time in minitues** - representing Time spent in listening to songs
 > * **Number of sessions** - How often user logoff and logged 
@@ -352,6 +354,7 @@ The value is same for all day of Downgraded users.
 The value is same for all day of Upgraded users.
 
 ##### Categorical Feature
+
 The `7` features columns correspond to `7` values of `OS-Browser`
 > * **Windows-Firefox**
 > * **Macintosh-Firefox**
@@ -362,6 +365,7 @@ The `7` features columns correspond to `7` values of `OS-Browser`
 > * **Windows-Trident**
 
 ## Machine Learning modelling 
+
 It is about **applying statistical methods** over very large volume of data or **big data**. 
 When we say **Big data** the data which cannot fit into one single computers memory and hence had to be split into multiple chunks 
 ,stored and processed seperately on multiple comuters. The results of the processing is assembled back into single unit by driver 
@@ -372,6 +376,7 @@ If you like, You can find a interesting read on machine learning to start to und
 The ML model is run on `pySpark 3.6` on **IBM Watson Studio**  distributed comptute platform.
 
 ### Algorithms
+
 The goal is to predict the value of the label column, in this case `isCancelled` which takes a value `0` or `1`. 
 We have defined label which takes 2 values. So this is a `Supervised Learning - binary classification` problem. 
 
@@ -431,6 +436,7 @@ The Model are trained by crossvaidator based param_grid passed. The trained mode
 not seen before.
 
 ##### **Logisctic regression**
+
 > * **Parameters :**
 
 ```
@@ -664,6 +670,7 @@ param_grid =ParamGridBuilder()                           \
 </div>
 
 ### **Metrics to Evaluate the ML Models**
+
 The dataset taken for analyis is imbalanced dataset with only around `23%` cancelled user. As the dataset is slightly imbalanced 
 towards active customers. `F1-score` or `Harmonic Mean` is as used a primary metrics to evaluate the model. 
 Validation data is used for prediction of `IsCancelled` value of test dataset. Model with the best `F1-Score` can be used 
@@ -775,6 +782,7 @@ There is scope for more hyperparameter tuning and train the model on larger data
 ![Comparision of metrics of ML Models](/SparkifyBlog/Model_Compare.png "Comparision of metrics of ML Models")
 
 ## Conclusion
+
 The experiment is done with `2` months data. The features were engineered on `per user basis`. There are `29` features extracted from 
 raw log data. The featured dataframe is then used in ML modelling.  `4` binary classification algorthms are evaluated and model
 with best `F1` score is used of prediction. Out of 4 models `Gradient Boosted tree` and `Decision Trees Classifier` both proved 
