@@ -301,7 +301,7 @@ root
 ```
 
 **A preview of feature dataset is as shown below**
- -- `UserID` followed by `isCancelled` as classification label column followed by `29` feature values.
+-- `UserID` followed by `isCancelled` as classification label column followed by `29` feature values.
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>+------+-----------+------------------+--------+----------+----------+--------+----------+-------+----------+--------------+---------+---------+-------------+-----------+--------------+-----------+-------------+-------------------+---------------------+------------------+--------------------+----------+------------+---------------+-----------------+----------------+--------------+--------------+-------------+---------------+
 |userId|isCancelled|        listenTime|sessions|numOfItems|numOfSongs|thumbsUp|thumbsDown|upgrade|rollAdvert|advert_seconds|downgrade|addFriend|addToPlaylist|numOfArtist|numOfUniqSongs|sumSongRank|sumArtistRank|upgradeToCancelDays|downgradeToCancelDays|  avgDowngradeDays|      avgUpgradeDays|helpVisits|SaveSettings|Windows_Firefox|Macintosh_Firefox|Macintosh_Safari|Windows_Safari|Ubuntu_Firefox|Ubuntu_Safari|Windows_Trident|
@@ -318,6 +318,7 @@ root
 |   205|          0|263650.81615999993|       5|      1244|      1048|      50|        10|      0|         0|           0.0|       10|       21|           25|        803|           966|      -1048|        -1048|                0.0|                  0.0| 5.304983281893006|                 0.0|        11|           2|              0|                0|               1|             0|             0|            0|              0|
 +------+-----------+------------------+--------+----------+----------+--------+----------+-------+----------+--------------+---------+---------+-------------+-----------+--------------+-----------+-------------+-------------------+---------------------+------------------+--------------------+----------+------------+---------------+-----------------+----------------+--------------+--------------+-------------+---------------+
 </pre>
+</div>
 
 ### Meaning of features
 
