@@ -461,8 +461,8 @@ param_grid = ParamGridBuilder()                     \
 ```
 
 > * **Resultant Metrics** 
-<div class="output_html rendered_html output_subarea output_execute_result">
-    <div>
+
+<div>
         <style scoped>
             .dataframe tbody tr th:only-of-type {
             vertical-align: middle;
@@ -503,7 +503,6 @@ param_grid = ParamGridBuilder()                     \
         </tr>
     </tbody>
     </table>
-</div>
 </div>
 
 ##### **Random Forests**
