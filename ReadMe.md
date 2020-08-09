@@ -462,49 +462,49 @@ param_grid = ParamGridBuilder()                     \
 
 > * **Resultant Metrics** 
 <div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+    <div>
+        <style scoped>
+            .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Accuracy</th>
-      <th>Precision</th>
-      <th>Recall</th>
-      <th>F1</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Training</th>
-      <td>0.864516</td>
-      <td>0.116667</td>
-      <td>0.400000</td>
-      <td>0.180645</td>
-    </tr>
-    <tr>
-      <th>Validation</th>
-      <td>0.891304</td>
-      <td>0.128440</td>
-      <td>0.482759</td>
-      <td>0.202899</td>
-    </tr>
-  </tbody>
-</table>
+        .dataframe thead th {
+            text-align: right;
+        }
+        </style>
+    <table border="1" class="dataframe">
+    <thead>
+        <tr style="text-align: right;">
+        <th></th>
+            <th>Accuracy</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Training</th>
+            <td>0.864516</td>
+            <td>0.116667</td>
+            <td>0.400000</td>
+            <td>0.180645</td>
+        </tr>
+        <tr>
+        <th>Validation</th>
+        <td>0.891304</td>
+        <td>0.128440</td>
+        <td>0.482759</td>
+        <td>0.202899</td>
+        </tr>
+    </tbody>
+    </table>
 </div>
-
+</div>
 
 ##### **Random Forests**
 
