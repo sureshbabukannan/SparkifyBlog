@@ -324,7 +324,7 @@ root
 </pre>
 </div>
 </div>
-</div>
+    </div>
 </div>
 
 First `10` row of the feature dataset is shown
@@ -399,6 +399,7 @@ The following binary classfication algorithms are evaluated to choose a best mod
 ### Modelling 
 
 > * First the features dataframe is taken and feature vectors are formed, Code snippit showing `vectorAssembler` below
+
 ```
 vectAssembler = VectorAssembler(
     inputCols=['listenTime', 'sessions', 'numOfItems', 'numOfSongs', 'thumbsUp',
@@ -414,9 +415,10 @@ vectAssembler = VectorAssembler(
     )
 
 features = vectAssembler.transform(features)
-
 ```
+
 > * The feature vector dataset is split into 70/30 proporation as train and test datasets.
+
 ```
 train, test = features.select(col('isCancelled').alias('label'),       \
                               col('featVector').alias('features')) \
@@ -438,6 +440,7 @@ Evaluated_model = CrossValidator(estimator=model_in,
                                      seed=77
                                     )
 ```
+
 >> * The `Crossvalidator` picks the best comibination of `hyperparameter` of the model and the results are evaluate by `BinaryClassificationEvaluator`
     
 #### **HyperParameter Grid passed to CrossValidator and Resultant Metrics**
@@ -515,6 +518,7 @@ param_grid = ParamGridBuilder()                                       \
             .addGrid(rfc.featureSubsetStrategy ,['sqrt', 'onethird']) \
             .build()
 ```
+
 > * **Resultant Metrics** 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
